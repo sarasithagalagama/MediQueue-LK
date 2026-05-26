@@ -29,6 +29,9 @@ import CashClosingsPage from "../pages/doctor/CashClosingsPage";
 
 import ReceptionistLayout from "../layouts/ReceptionistLayout";
 import ReceptionistDashboardPage from "../pages/receptionist/DashboardPage";
+import ReceptionistPaymentsPage from "../pages/receptionist/PaymentsPage";
+import ReceptionistMedicineSalesPage from "../pages/receptionist/MedicineSalesPage";
+import ReceptionistMedicineStockPage from "../pages/receptionist/MedicineStockPage";
 
 import PatientLayout from "../layouts/PatientLayout";
 import PatientDashboardPage from "../pages/patient/DashboardPage";
@@ -226,19 +229,11 @@ export default function AppRoutes() {
         />
         <Route
           path="/receptionist/payments"
-          element={buildPage(
-            "Payments",
-            "Collect payments without breaking anti-fraud controls.",
-            ["No hard delete", "Discount and refund approvals"],
-          )}
+          element={<ReceptionistPaymentsPage />}
         />
         <Route
           path="/receptionist/medicine-sales"
-          element={buildPage(
-            "Medicine Sales",
-            "Record medicine issue and sales against stock.",
-            ["Stock-linked sales lines", "Alert on missing payment"],
-          )}
+          element={<ReceptionistMedicineSalesPage />}
         />
         <Route
           path="/receptionist/whatsapp"
@@ -250,14 +245,7 @@ export default function AppRoutes() {
         />
         <Route
           path="/receptionist/medicine-stock"
-          element={buildPage(
-            "Medicine Stock View / Update Request",
-            "View stock and request controlled updates.",
-            [
-              "Traceable adjustment history",
-              "Approval required for sensitive changes",
-            ],
-          )}
+          element={<ReceptionistMedicineStockPage />}
         />
         <Route
           path="/receptionist/print-documents"
