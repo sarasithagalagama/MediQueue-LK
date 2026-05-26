@@ -16,6 +16,16 @@ import AdminFinancePage from "../pages/admin/FinancePage";
 
 import DoctorLayout from "../layouts/DoctorLayout";
 import DoctorDashboardPage from "../pages/doctor/DashboardPage";
+import QueuePage from "../pages/doctor/QueuePage";
+import CurrentPatientPage from "../pages/doctor/CurrentPatientPage";
+import PatientsPage from "../pages/doctor/PatientsPage";
+import ConsultationsPage from "../pages/doctor/ConsultationsPage";
+import PrescriptionsPage from "../pages/doctor/PrescriptionsPage";
+import MedicalCertificatesPage from "../pages/doctor/MedicalCertificatesPage";
+import DoctorFinancePage from "../pages/doctor/DoctorFinancePage";
+import MedicineStockPage from "../pages/doctor/MedicineStockPage";
+import StockAlertsPage from "../pages/doctor/StockAlertsPage";
+import CashClosingsPage from "../pages/doctor/CashClosingsPage";
 
 import ReceptionistLayout from "../layouts/ReceptionistLayout";
 import ReceptionistDashboardPage from "../pages/receptionist/DashboardPage";
@@ -143,87 +153,21 @@ export default function AppRoutes() {
         }
       >
         <Route path="/doctor/dashboard" element={<DoctorDashboardPage />} />
-        <Route
-          path="/doctor/queue"
-          element={buildPage(
-            "Today’s Queue",
-            "See and control the consultation queue in real time.",
-            [
-              "Auto-increment tokens per doctor/day",
-              "Current patient and waiting list",
-            ],
-          )}
-        />
+        <Route path="/doctor/queue" element={<QueuePage />} />
         <Route
           path="/doctor/current-patient"
-          element={buildPage(
-            "Current Patient",
-            "Open the patient currently under consultation.",
-            [
-              "See history before taking notes",
-              "Link prescription and certificates",
-            ],
-          )}
+          element={<CurrentPatientPage />}
         />
-        <Route
-          path="/doctor/patients"
-          element={buildPage(
-            "Patients",
-            "Browse patient records and visit history.",
-            ["Past consultations and prescriptions", "Clinical history lookup"],
-          )}
-        />
-        <Route
-          path="/doctor/consultations"
-          element={buildPage(
-            "Consultations",
-            "Capture symptoms, diagnosis, advice, and follow-up.",
-            ["Clinical notes and diagnosis", "Follow-up date management"],
-          )}
-        />
-        <Route
-          path="/doctor/prescriptions"
-          element={buildPage(
-            "Prescriptions",
-            "Generate printable prescriptions and stock-linked lines.",
-            ["Free text or stock-selected medicines", "PDF-ready output"],
-          )}
-        />
+        <Route path="/doctor/patients" element={<PatientsPage />} />
+        <Route path="/doctor/consultations" element={<ConsultationsPage />} />
+        <Route path="/doctor/prescriptions" element={<PrescriptionsPage />} />
         <Route
           path="/doctor/medical-certificates"
-          element={buildPage(
-            "Medical Certificates",
-            "Issue leave certificates with proper validation.",
-            ["Certificate numbers", "PDF and printable output"],
-          )}
+          element={<MedicalCertificatesPage />}
         />
-        <Route
-          path="/doctor/finance"
-          element={buildPage(
-            "Finance Check",
-            "Compare expected vs collected income and payment methods.",
-            ["Doctor finance visibility", "Pending payment warnings"],
-          )}
-        />
-        <Route
-          path="/doctor/medicine-stock"
-          element={buildPage(
-            "Medicine Stock Check",
-            "Review live stock counts and availability.",
-            [
-              "Low stock, out of stock, and near expiry",
-              "Traceable stock changes",
-            ],
-          )}
-        />
-        <Route
-          path="/doctor/stock-alerts"
-          element={buildPage(
-            "Stock Alerts",
-            "Review high-risk inventory and payment mismatch alerts.",
-            ["Critical alerts first", "Resolve or dismiss alerts"],
-          )}
-        />
+        <Route path="/doctor/finance" element={<DoctorFinancePage />} />
+        <Route path="/doctor/medicine-stock" element={<MedicineStockPage />} />
+        <Route path="/doctor/stock-alerts" element={<StockAlertsPage />} />
         <Route
           path="/doctor/reports"
           element={buildPage("Reports", "Doctor-focused operational reports.", [
@@ -239,17 +183,7 @@ export default function AppRoutes() {
             ["Audit logs for every change", "Fraud-control visibility"],
           )}
         />
-        <Route
-          path="/doctor/cash-closings"
-          element={buildPage(
-            "Cash Closings",
-            "Review receptionist daily closings and mismatch cases.",
-            [
-              "System totals vs counted totals",
-              "Approve or investigate differences",
-            ],
-          )}
-        />
+        <Route path="/doctor/cash-closings" element={<CashClosingsPage />} />
       </Route>
 
       <Route
