@@ -5,6 +5,31 @@ import ServicesPage from "../pages/public/ServicesPage";
 import DoctorPage from "../pages/public/DoctorPage";
 import ContactPage from "../pages/public/ContactPage";
 import BookAppointmentPage from "../pages/public/BookAppointmentPage";
+import PublicLayout from "../layouts/PublicLayout";
+import LoginPage from "../pages/auth/LoginPage";
+import RegisterPage from "../pages/auth/RegisterPage";
+import ProtectedRoute from "../components/ProtectedRoute";
+
+import AdminLayout from "../layouts/AdminLayout";
+import AdminDashboardPage from "../pages/admin/DashboardPage";
+import AdminFinancePage from "../pages/admin/FinancePage";
+
+import DoctorLayout from "../layouts/DoctorLayout";
+import DoctorDashboardPage from "../pages/doctor/DashboardPage";
+
+import ReceptionistLayout from "../layouts/ReceptionistLayout";
+import ReceptionistDashboardPage from "../pages/receptionist/DashboardPage";
+
+import PatientLayout from "../layouts/PatientLayout";
+import PatientDashboardPage from "../pages/patient/DashboardPage";
+
+import RolePage from "../pages/shared/RolePage";
+
+function buildPage(title, description, highlights = []) {
+  return (
+    <RolePage title={title} description={description} highlights={highlights} />
+  );
+}
 
 export default function AppRoutes() {
   return (
