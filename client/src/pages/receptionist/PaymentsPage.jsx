@@ -65,6 +65,30 @@ export default function ReceptionistPaymentsPage() {
     }
   };
 
+  const refresh = () => fetchPayments();
+
+  const openReceipt = (id) => {
+    // fetch PDF using auth header, create blob URL and open in new tab
+    (async () => {
+      try {
+        const token = localStorage.getItem("mediqueue_token");
+        const res = await fetch(
+          `${api.defaults.baseURL}/payments/${id}/receipt`,
+          {
+            headers: { Authorization: token ? `Bearer ${token}` : "" },
+          },
+        );
+        if (!res.ok) throw new Error("Failed to fetch receipt");
+        const blob = await res.blob();
+        const url = window.URL.createObjectURL(blob);
+        window.open(url, "_blank");
+      } catch (err) {
+        console.error(err);
+        alert(err.message || "Could not load receipt");
+      }
+    })();
+  };
+
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-bold">Payments</h2>
@@ -169,25 +193,41 @@ export default function ReceptionistPaymentsPage() {
           <div className="mt-4 space-y-3">
             {loading && <div>Loading...</div>}
             {!loading && payments.length === 0 && <div>No payments yet</div>}
-            {!loading &&
-              payments.map((p) => (
-                <div key={p._id} className="p-3 border rounded">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <div className="font-medium">Receipt: {p.receiptNo}</div>
-                      <div className="text-sm text-slate-600">
-                        Patient: {p.patientId || "—"}
+            {!loading && (
+              <div className="space-y-3">
+                {payments.map((p) => (
+                  <div key={p._id} className="p-3 border rounded">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-medium">
+                          Receipt: {p.receiptNo}
+                        </div>
+                        <div className="text-sm text-slate-600">
+                          Patient: {p.patientId || "—"}
+                        </div>
                       </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="font-semibold">
-                        Rs. {p.amountPaid || 0}
+                      <div className="text-right">
+                        <div className="font-semibold">
+                          Rs. {p.amountPaid || 0}
+                        </div>
+                        <div className="text-sm text-slate-600">{p.status}</div>
+                        <div className="mt-2 flex items-center justify-end gap-2">
+                          <button
+                            onClick={() => openReceipt(p._id)}
+                            className="btn btn-sm btn-outline"
+                          >
+                            View Receipt
+                          </button>
+                          <button onClick={refresh} className="btn btn-sm">
+                            Refresh
+                          </button>
+                        </div>
                       </div>
-                      <div className="text-sm text-slate-600">{p.status}</div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

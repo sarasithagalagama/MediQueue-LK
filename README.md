@@ -85,6 +85,18 @@ The current build includes:
 - WhatsApp link generation
 - Reports and analytics routes
 
+## TODO
+
+The following screens are currently scaffolded and should be replaced with live, API-driven flows:
+
+- Admin placeholders: users, patients, appointments, doctors, clinic profile, medicines, reports, and settings
+- Doctor placeholders: reports and payment audit
+- Receptionist placeholders: patients, appointments, queue, WhatsApp, print documents, and cash closing
+- Patient placeholders: book appointment, appointments, queue status, prescriptions, medical certificates, and profile
+- Public page wiring: connect the appointment booking and contact forms to the backend submit handlers
+- Dashboard wiring: replace hardcoded summary cards with live data for admin, doctor, receptionist, and patient views
+- Public home content: remove mock metrics and connect clinic/doctor content to API data
+
 ## Notes
 
 This project is scaffolded for local development and internship-grade demonstration. Some screens use functional placeholders with the backend API already in place so the system can be expanded incrementally without reworking the architecture.
